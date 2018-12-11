@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { purple } from './utils/colors'
 import { Constants } from 'expo'
+import DeckList from './components/DeckList'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -17,6 +18,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
         <Text>Start up for Mobile Flashcard!!</Text>
+        <DeckList/>
       </View>
     );
   }
