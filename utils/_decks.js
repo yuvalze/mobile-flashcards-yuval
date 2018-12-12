@@ -15,7 +15,7 @@ function setDummyData () {
   return dummyData
 }
 
-export function formatCalendarResults (results) {
+export function formatDecksResults (results) {
   return results === null
     ? setDummyData()
     : JSON.parse(results)

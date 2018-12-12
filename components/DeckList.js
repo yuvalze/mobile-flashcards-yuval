@@ -1,15 +1,30 @@
 import React, { Component } from 'react';
 import {SectionList, StyleSheet, Text, View } from 'react-native';
+import { fetchDeckResults } from '../utils/api';
 
 export default class DeckList extends Component {
+
+  state = {
+    decksObj: {}
+  }
+
+  componentDidMount () {
+    fetchDeckResults().then(res => this.setState({decksObj: res}));
+  }
+
   render() {
+    const decksArr = Object.values(this.state.decksObj);
+    const sectionsValue=
+      decksArr.map ( deckItem => { return (
+        {title: deckItem.title, data: [[deckItem.questions.length] + ' Cards']}
+      )});
+      console.log('secctionValue');
+      console.log(sectionsValue);
+
     return (
       <View style={styles.container}>
         <SectionList
-          sections={[
-            {title: 'New Deck 1', data: ['0 Cards']},
-            {title: 'New Deck 22', data: ['0 Cards']},
-          ]}
+            sections={sectionsValue}
           renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
           keyExtractor={(item, index) => index}
