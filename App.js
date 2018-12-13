@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import { purple } from './utils/colors'
+import { Text, View, StatusBar, Button } from 'react-native';
 import { Constants } from 'expo'
-import DeckList from './components/DeckList'
+import DeckListView from './components/DeckListView'
+import IndividualDeckView from './components/IndividualDeckView'
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -12,23 +13,48 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
   )
 }
 
-export default class App extends React.Component {
+
+class HomeScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
-        <Text>Start up for Mobile Flashcard!!</Text>
-        <DeckList/>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Home Screen</Text>
+        <Button
+          title="Go to Details"
+          onPress={() => this.props.navigation.navigate('Details')}
+        />
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+class DetailsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Details Screen</Text>
+      </View>
+    );
+  }
+}
+
+
+const AppNavigator = createStackNavigator(
+  {
+    DeckList: DeckListView,
+    IndividualDeck: IndividualDeckView
   },
-});
+  {
+    initialRouteName: 'DeckList'
+  }
+);
+
+const AppContainer = createAppContainer(AppNavigator);
+
+export default class App extends React.Component {
+  render() {
+    return (
+        <AppContainer/>
+    );
+  }
+}

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {SectionList, StyleSheet, Text, View } from 'react-native';
+import {SectionList, StyleSheet, Text, View, Button } from 'react-native';
 import { fetchDeckResults } from '../utils/api';
 
-export default class DeckList extends Component {
+
+export default class DeckListView extends Component {
 
   state = {
     decksObj: {}
@@ -23,13 +24,18 @@ export default class DeckList extends Component {
 
     return (
       <View style={styles.container}>
-        <SectionList
-            sections={sectionsValue}
-          renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
-          renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
-          keyExtractor={(item, index) => index}
-        />
-      </View>
+        <Text style = {styles.titleText}> DECKS </Text>
+        <View style = {styles.lineStyleYellow} />
+          <SectionList
+              sections={sectionsValue}
+            renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+            renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+            keyExtractor={(item, index) => index}
+          />
+          <Button
+            title="Go to Individual deck"
+            onPress={() => this.props.navigation.navigate('IndividualDeck')}/>
+        </View>
     );
   }
 }
@@ -52,5 +58,13 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
     height: 44,
+  },
+  lineStyleYellow:{
+    borderBottomColor: 'yellow',
+    borderBottomWidth: 10,
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 })
