@@ -13,6 +13,12 @@ export default class DeckListView extends Component {
     fetchDeckResults().then(res => this.setState({decksObj: res}));
   }
 
+  renderItemSection = ({item, index, section}) => (
+      <Button color="#841584" key={index} title = {item}
+      onPress={() => this.props.navigation.navigate('IndividualDeck')}/>
+  )
+
+
   render() {
     const decksArr = Object.values(this.state.decksObj);
     const sectionsValue=
@@ -28,13 +34,10 @@ export default class DeckListView extends Component {
         <View style = {styles.lineStyleYellow} />
           <SectionList
               sections={sectionsValue}
-            renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+            renderItem={this.renderItemSection}
             renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
             keyExtractor={(item, index) => index}
           />
-          <Button
-            title="Go to Individual deck"
-            onPress={() => this.props.navigation.navigate('IndividualDeck')}/>
         </View>
     );
   }
@@ -53,11 +56,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     backgroundColor: 'grey',
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
   },
   lineStyleYellow:{
     borderBottomColor: 'yellow',
