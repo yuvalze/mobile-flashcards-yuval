@@ -1,53 +1,34 @@
-import React, { Component } from 'react';
-import {StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
-import { fetchDeckResults } from '../utils/api';
+import React from 'react';
+import { Text, View, StatusBar, Button } from 'react-native';
+import { Constants } from 'expo'
+import DeckListView from './components/DeckListView'
+import IndividualDeckView from './components/IndividualDeckView'
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+function UdaciStatusBar ({backgroundColor, ...props}) {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
 
-export default class DeckListView extends Component {
-
-  state = {
-    decksObj: {}
+const AppNavigator = createStackNavigator(
+  {
+    DeckList: DeckListView,
+    IndividualDeck: IndividualDeckView
+  },
+  {
+    initialRouteName: 'DeckList'
   }
+);
 
-  componentDidMount () {
-    fetchDeckResults().then(res => this.setState({decksObj: res}));
-  }
+const AppContainer = createAppContainer(AppNavigator);
 
-
+export default class App extends React.Component {
   render() {
-    const decksArr = Object.values(this.state.decksObj);
-
     return (
-      <View style={styles.container}>
-        <Text style = {styles.titleText}> DECKS </Text>
-        <View style = {styles.lineStyleYellow} />
-        {decksArr.map ( deckItem => 
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('IndividualDeck')}>
-            <Text style={styles.titleText}> {deckItem.title} </Text>
-            <Text style={styles.dataText}> {deckItem.questions.length}  Cards </Text>
-            <View style = {styles.lineStyleYellow} />
-          </TouchableOpacity>
-        )}
-      </View>
+        <AppContainer/>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-   flex: 1,
-   paddingTop: 22
-  },
-  lineStyleYellow:{
-    borderBottomColor: 'yellow',
-    borderBottomWidth: 10,
-  },
-  titleText: {
-    fontSize: 25,
-    fontWeight: 'bold',
-  },
-  dataText: {
-    fontSize: 20
-  },
-})
