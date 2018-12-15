@@ -23,7 +23,7 @@ export default class DeckListView extends Component {
         <View style = {styles.lineStyleYellow} />
         {decksArr.map ( deckItem => 
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('IndividualDeck')}>
+            onPress={() => this.props.navigation.navigate('IndividualDeck', { deckItem })}>
             <Text style={styles.titleText}> {deckItem.title} </Text>
             <Text style={styles.dataText}> {deckItem.questions.length}  Cards </Text>
             <View style = {styles.lineStyleYellow} />
