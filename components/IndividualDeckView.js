@@ -11,10 +11,10 @@ export default class IndividualDeckView extends React.Component {
         <Text style={styles.dataText}> {deckItem.questions.length} Cards </Text>
         <Button color={purple}
           title="Add Card"
-          onPress={() => {}}/>
+          onPress={() => this.props.navigation.navigate('AddCard', { deckItem })}/>
         <Button color={orange}
           title="Start Quiz"
-          onPress={() => {}}/>
+          onPress={() => this.props.navigation.navigate('Quiz', { deckItem })}/>
       </View>
     );
   }
