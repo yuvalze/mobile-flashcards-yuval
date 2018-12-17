@@ -5,6 +5,7 @@ import { red, orange, blue, lightPurp, pink, white } from './colors'
 import { Notifications, Permissions } from 'expo'
 
 
+const NOTIFICATION_KEY = 'UdaciFitness:notifications'
 
 const styles = StyleSheet.create({
   iconContainer: {
@@ -47,6 +48,27 @@ export function getDecksMetaInfo (decks) {
   return typeof decks === 'undefined'
     ? info
     : info[decks]
+}
+
+export function clearLocalNotification () {
+  return AsyncStorage.removeItem(NOTIFICATION_KEY)
+    .then(Notifications.cancelAllScheduledNotificationsAsync)
+}
+
+function createNotification () {
+  return {
+    title: 'Quiz for today!',
+    body: "👋 don't forget to completed at least one quiz for today!",
+    ios: {
+      sound: true,
+    },
+    android: {
+      sound: true,
+      priority: 'high',
+      sticky: false,
+      vibrate: true,
+    }
+  }
 }
 
 export function setLocalNotification () {

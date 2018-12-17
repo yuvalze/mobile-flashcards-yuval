@@ -1,12 +1,13 @@
-import React from 'react';
-import { View, StatusBar } from 'react-native';
-import { Constants } from 'expo';
-import { createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
-import DeckListView from './components/DeckListView';
-import IndividualDeckView from './components/IndividualDeckView';
-import QuizView from './components/QuizView';
-import AddCardView from './components/AddCardView';
+import React from 'react'
+import { View, StatusBar } from 'react-native'
+import { Constants } from 'expo'
+import { createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation'
+import DeckListView from './components/DeckListView'
+import IndividualDeckView from './components/IndividualDeckView'
+import QuizView from './components/QuizView'
+import AddCardView from './components/AddCardView'
 import AddDeckView from './components/AddDeckView'
+import { setLocalNotification } from './utils/helpers'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -38,12 +39,18 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+const MainNavigator = createAppContainer(AppNavigator);
+
 
 export default class App extends React.Component {
+
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
-        <AppContainer/>
+        <MainNavigator/>
     );
   }
 }
