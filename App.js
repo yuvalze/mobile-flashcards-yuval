@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import { Constants } from 'expo';
+import { createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import DeckListView from './components/DeckListView';
 import IndividualDeckView from './components/IndividualDeckView';
 import QuizView from './components/QuizView';
-import AddCard from './components/AddCard';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import AddCardView from './components/AddCardView';
+import AddDeckView from './components/AddDeckView'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -15,15 +16,25 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
   )
 }
 
-const AppNavigator = createStackNavigator(
+const DeckListTabNavigatorView = createBottomTabNavigator(
   {
-    DeckList: DeckListView,
-    IndividualDeck: IndividualDeckView,
-    Quiz: QuizView,
-    AddCard: AddCard
+    AddDeck: AddDeckView,
+    DeckList: DeckListView
   },
   {
     initialRouteName: 'DeckList'
+  }
+);
+
+const AppNavigator = createStackNavigator(
+  {
+    DeckListTabNavigator: DeckListTabNavigatorView,
+    IndividualDeck: IndividualDeckView,
+    Quiz: QuizView,
+    AddCard: AddCardView
+  },
+  {
+    initialRouteName: 'DeckListTabNavigator'
   }
 );
 
