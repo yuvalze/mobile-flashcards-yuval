@@ -21,11 +21,12 @@ export default class DeckListView extends Component {
       <View style={styles.container}>
         <Text style = {styles.titleText}> DECKS </Text>
         <View style = {styles.lineStyleYellow} />
-        {decksArr.map ( deckItem => 
+        {decksArr.map ( (deckItem, index) => 
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('IndividualDeck', { deckItem })}>
-            <Text style={styles.titleText}> {deckItem.title} </Text>
-            <Text style={styles.dataText}> {deckItem.questions.length}  Cards </Text>
+            key = {index}
+            onPress = {() => this.props.navigation.navigate('IndividualDeck', { deckItem })}>
+            <Text style = {styles.titleText}> {deckItem.title} </Text>
+            <Text style = {styles.dataText}> {deckItem.questions.length}  Cards </Text>
             <View style = {styles.lineStyleYellow} />
           </TouchableOpacity>
         )}
