@@ -23,7 +23,5 @@ export function formatDecksResults (results) {
   else {
     returnData = JSON.parse(results);
   }
-  console.log('formatDecksResults returnData');
-  console.log(returnData);
   return returnData;
 }

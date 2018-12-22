@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Text, TextInput} from 'react-native'
 import {SubmitBtn} from './CommonComponent'
-import {submitDeck} from '../utils/api'
+import {addDeck} from '../utils/api'
 import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
 
 
@@ -21,7 +21,7 @@ export default class AddDeckView extends React.Component {
     onAddNewDeck = () => {
         const key = this.state.deckName;
         const entry = getEmtpyDeck(key);
-        submitDeck({ key, entry })
+        addDeck({ key, entry })
         clearLocalNotification()
           .then(setLocalNotification)
     }

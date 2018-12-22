@@ -6,11 +6,7 @@ export function fetchDeckResults () {
     .then(formatDecksResults)
 }
 
-export function submitDeck ({ key, entry }) {
-  console.log('submitDeck key');
-  console.log(key)
-  console.log('submitDeck entry');
-  console.log(entry)
+export function addDeck ({ key, entry }) {
   return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
     [key]: entry
   }))
