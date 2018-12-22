@@ -10,9 +10,9 @@ export default class DeckListView extends Component {
   }
 
   componentDidMount () {
+    console.log('DeckListView componentDidMount')
     fetchDeckResults().then(res => this.setState({decksObj: res}));
   }
-
 
   render() {
     const decksArr = Object.values(this.state.decksObj);

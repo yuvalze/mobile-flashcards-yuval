@@ -16,7 +16,14 @@ function setDummyData () {
 }
 
 export function formatDecksResults (results) {
-  return results === null
-    ? setDummyData()
-    : JSON.parse(results)
+  let returnData;
+  if (results === null) {
+     returnData = setDummyData();
+  }
+  else {
+    returnData = JSON.parse(results);
+  }
+  console.log('formatDecksResults returnData');
+  console.log(returnData);
+  return returnData;
 }

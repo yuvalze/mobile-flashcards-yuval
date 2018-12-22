@@ -28,12 +28,14 @@ export default class AddCardView extends React.Component {
                 <Text> The New Question</Text>
                 <TextInput
                     style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    placeholder="Type here the question"
                     onChangeText={(questionText) => this.setState({questionText})}
                     value={this.state.questionText}
                 />
                 <Text> The New Answer</Text>
                 <TextInput
                     style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    placeholder="Type here the answer"
                     onChangeText={(answerText) => this.setState({answerText})}
                     value={this.state.answerText}
                 />
