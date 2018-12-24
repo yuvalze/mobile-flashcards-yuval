@@ -1,7 +1,9 @@
 import React from 'react'
 import {View, Text, TextInput} from 'react-native'
+import { connect } from 'react-redux'
 import {SubmitBtn} from './CommonComponent'
-import {addDeck} from '../utils/api'
+import {addDeckToStorage} from '../utils/api'
+import {addDeck} from '../actions'
 import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
 
 
@@ -13,15 +15,16 @@ const getEmtpyDeck = (key) => {
         })
 }
 
-export default class AddDeckView extends React.Component {
+class AddDeckView extends React.Component {
     state = {
         deckName: ''
     }
 
     onAddNewDeck = () => {
-        const key = this.state.deckName;
-        const entry = getEmtpyDeck(key);
-        addDeck({ key, entry })
+        const deckName = this.state.deckName;
+        const deck = getEmtpyDeck(deckName);
+        addDeckToStorage({ deckName, deck }).then(() => this.props.dispatch(addDeck({deckName:deck})
+        ));
         clearLocalNotification()
           .then(setLocalNotification)
     }
@@ -43,3 +46,5 @@ export default class AddDeckView extends React.Component {
         )
     }
 }
+
+export default connect()(AddDeckView)

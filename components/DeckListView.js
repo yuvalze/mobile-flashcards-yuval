@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { fetchDeckResults } from '../utils/api';
+import { connect } from 'react-redux'
+import { receiveDecks } from '../actions'
 
-
-export default class DeckListView extends Component {
+class DeckListView extends Component {
 
   state = {
     decksObj: {}
@@ -11,11 +12,13 @@ export default class DeckListView extends Component {
 
   componentDidMount () {
     console.log('DeckListView componentDidMount')
-    fetchDeckResults().then(res => this.setState({decksObj: res}));
+    fetchDeckResults().then(decksObj => this.props.dispatch(receiveDecks(decksObj)));
   }
 
   render() {
-    const decksArr = Object.values(this.state.decksObj);
+    console.log('DeckListView render this.props');
+    console.log(this.props)
+    const decksArr = Object.values(this.props.decksObj || []);
 
     return (
       <View style={styles.container}>
@@ -52,3 +55,13 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
 })
+
+function mapStateToProps (state) {
+  return {
+    decksObj : state
+  }
+}
+
+export default connect(mapStateToProps)(DeckListView)
+
+
