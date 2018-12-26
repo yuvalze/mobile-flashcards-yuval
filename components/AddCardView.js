@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Text, TextInput, StyleSheet, TouchableOpacity, Platform} from 'react-native'
 import { purple, white } from '../utils/colors'
+import {addCardToDeckStorage} from '../utils/api'
 
 function SubmitBtn ({ onPress }) {
     return (
@@ -19,6 +20,23 @@ export default class AddCardView extends React.Component {
     }
 
     onSubmit = () => {
+        const {deckKeyStr, deckValueObj}  = this.props.navigation.state.params;
+        const {questionText, answerText} = this.state;
+  
+        // Save the new deck on AsyncStorage.
+        addCardToDeckStorage( deckKeyStr, {
+            questions: [{
+              question: 'sdsd?',
+              answer: 'sdfdsfsds'
+            }]
+        } );
+
+        // Sשve the new card on Redux Store.
+    
+        // Clear the input text.
+        
+        // Navigare to the new deck.
+        //navigate('IndividualDeck', {deckItem : deckEmpty})
 
     }
     

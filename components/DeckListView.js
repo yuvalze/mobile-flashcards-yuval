@@ -16,23 +16,23 @@ class DeckListView extends Component {
   }
 
   render() {
-    console.log('DeckListView render this.props');
-    console.log(this.props)
-    const decksArr = Object.values(this.props.decksObj || []);
+    const decksKeyValueArr = Object.entries(this.props.decksObj || {});
 
     return (
       <View style={styles.container}>
         <Text style = {styles.titleText}> DECKS </Text>
         <View style = {styles.lineStyleYellow} />
-        {decksArr.map ( (deckItem, index) => 
-          <TouchableOpacity
+        {decksKeyValueArr.map ( (deckKeyValueItem, index) => {
+          const deckKeyStr = deckKeyValueItem[0];
+          const deckValueObj =  deckKeyValueItem[1];
+          return <TouchableOpacity
             key = {index}
-            onPress = {() => this.props.navigation.navigate('IndividualDeck', { deckItem })}>
-            <Text style = {styles.titleText}> {deckItem.title} </Text>
-            <Text style = {styles.dataText}> {deckItem.questions.length}  Cards </Text>
+            onPress = {() => this.props.navigation.navigate('IndividualDeck', {deckKeyStr, deckValueObj})}>
+            <Text style = {styles.titleText}> {deckValueObj.title} </Text>
+            <Text style = {styles.dataText}> {deckValueObj.questions.length}  Cards </Text>
             <View style = {styles.lineStyleYellow} />
           </TouchableOpacity>
-        )}
+        })}
       </View>
     );
   }

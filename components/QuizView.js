@@ -4,11 +4,11 @@ import CardView from './CardView'
 
 export default class QuizView extends React.Component {
     render() {
-        const {deckItem}  = this.props.navigation.state.params;
+        const { deckValueObj }  = this.props.navigation.state.params;
         return (
             <View>
                 <Text> QuizView </Text>
-                <CardView cardData={deckItem.questions[0]}/>
+                <CardView cardData={deckValueObj.questions[0]}/>
             </View>
         )
     }

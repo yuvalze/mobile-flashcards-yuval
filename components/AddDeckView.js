@@ -36,7 +36,9 @@ class AddDeckView extends React.Component {
         this.setState({deckName: ''});
 
         // Navigare to the new deck.
-        navigate('IndividualDeck', {deckItem : deckEmpty})
+        const deckKeyStr = deckName;
+        const deckValueObj =  deckEmpty;
+        navigate('IndividualDeck', {deckKeyStr, deckValueObj})
 
         clearLocalNotification()
           .then(setLocalNotification)
