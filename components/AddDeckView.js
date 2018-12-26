@@ -21,10 +21,23 @@ class AddDeckView extends React.Component {
     }
 
     onAddNewDeck = () => {
-        const deckName = this.state.deckName;
-        const deck = getEmtpyDeck(deckName);
-        addDeckToStorage({ deckName, deck }).then(() => this.props.dispatch(addDeck({deckName:deck})
-        ));
+        const {navigate} = this.props.navigation;
+        const {deckName} = this.state;
+        const deckEmpty = getEmtpyDeck(deckName);
+        const newDeckObj = {[deckName]:deckEmpty};
+
+        // Save the new deck on AsyncStorage.
+        addDeckToStorage({ deckName, deckEmpty });
+
+        // Seve the new deck on Redux Store.
+        this.props.dispatch(addDeck(newDeckObj));
+
+        // Clear the input text.
+        this.setState({deckName: ''});
+
+        // Navigare to the new deck.
+        navigate('IndividualDeck', {deckItem : deckEmpty})
+
         clearLocalNotification()
           .then(setLocalNotification)
     }
