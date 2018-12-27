@@ -32,17 +32,22 @@ export function addDeckToStorage ({ deckName, deckValueObj }) {
   }))
 }
 
-function setCardToDeckStorage (currentDeckStorage, deckName, cardValueObj) {
+function setCardToDeckStorage (currentDeckStorageObj, deckName, cardValueObj) {
   const newDeckStorage = {
-    ...currentDeckStorage,
-    [deckName] : cardValueObj
+    ...currentDeckStorageObj,
+    [deckName] : {
+      ...currentDeckStorageObj[deckName],
+      questions : currentDeckStorageObj[deckName].questions.concat(cardValueObj)
+    }
   };
   return AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(newDeckStorage));
 }
 
-export function addCardToDeckStorage ({ deckName, cardValueObj }) {
-  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(currentDeckStorage => 
-    setCardToDeckStorage(currentDeckStorage, deckName, cardValueObj))
+export function addCardToDeckStorage ( deckName, cardValueObj ) {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(currentDeckStorage => {
+    const currentDeckStorageObj = JSON.parse(currentDeckStorage);
+    setCardToDeckStorage(currentDeckStorageObj, deckName, cardValueObj);
+  })
 }
 
 export function removeDeck (deck) {

@@ -26,8 +26,6 @@ export default class CardView extends React.Component {
         }
     }
     render() {
-        console.log('CardView props');
-        console.log(this.props);
         const titleText = this.state.cardSide === 'question' ?  'Question' : 'Answer';
         return (
             <View>

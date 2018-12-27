@@ -11,8 +11,11 @@ class DeckListView extends Component {
   }
 
   componentDidMount () {
-    console.log('DeckListView componentDidMount')
-    fetchDeckResults().then(decksObj => this.props.dispatch(receiveDecks(decksObj)));
+    console.log('DeckListView componentDidMount decksObj')
+    fetchDeckResults().then(decksObj =>{ 
+      console.log(decksObj)
+      this.props.dispatch(receiveDecks(decksObj))
+    });
   }
 
   render() {

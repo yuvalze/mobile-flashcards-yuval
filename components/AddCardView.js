@@ -26,8 +26,8 @@ export default class AddCardView extends React.Component {
         // Save the new deck on AsyncStorage.
         addCardToDeckStorage( deckKeyStr, {
             questions: [{
-              question: 'sdsd?',
-              answer: 'sdfdsfsds'
+              question: questionText,
+              answer: answerText
             }]
         } );
 

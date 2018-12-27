@@ -2,7 +2,7 @@ import { RECEIVE_DECKS, ADD_DECK } from '../actions'
 
 function decks (state = {}, action) {
   console.log('reducer action2');
-  console.log(action);
+  console.log(action.type);
   switch (action.type) {
     case RECEIVE_DECKS :
     return {
