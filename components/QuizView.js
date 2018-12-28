@@ -11,7 +11,7 @@ export default class QuizView extends React.Component {
     }
 
     onAnsweredCorrect = () => {
-        this.setState((state, props) => {
+        this.setState((state) => {
             return {
                 answeredQuestion: state.answeredQuestion + 1,
                 answeredCorrect: state.answeredCorrect + 1
@@ -20,7 +20,7 @@ export default class QuizView extends React.Component {
     }
 
     onAnsweredIncorrect = () => {
-        this.setState((state, props) => {
+        this.setState((state) => {
             return {
                 answeredQuestion: state.answeredQuestion + 1
             };
@@ -30,18 +30,20 @@ export default class QuizView extends React.Component {
     render() {
         const noCardMessageStr = 'Sorry, you cannot take a quiz because there are no card in the deck';
         const { deckValueObj }  = this.props.navigation.state.params;
-        if (deckValueObj.questions.length === 0) {
+        const { answeredQuestion, answeredCorrect} = this.state;
+        const numberOfDeckQuestions = deckValueObj.questions.length;
+        if (numberOfDeckQuestions === 0) {
             return (
                 <View>
                     <Text> {noCardMessageStr}</Text>
                 </View>
             )
         }
-        else if (deckValueObj.questions.length === this.state.answeredQuestion) {
+        else if (numberOfDeckQuestions === answeredQuestion) {
             return (
                 <QuizScoreView
-                    answeredQuestion={this.state.answeredQuestion}
-                    answeredCorrect={this.state.answeredCorrect}/>
+                    answeredQuestion={answeredQuestion}
+                    answeredCorrect={answeredCorrect}/>
             )
         }
         else {
@@ -50,8 +52,9 @@ export default class QuizView extends React.Component {
                     <Text> QuizView </Text>
                     <CardView 
                         cardData={deckValueObj.questions[this.state.answeredQuestion]}
-                        onAnsweredCorrect={this.onAnsweredIncorrect}
-                        onAnsweredIncorrect={this.onAnsweredIncorrect} />
+                        onAnsweredCorrect={this.onAnsweredCorrect}
+                        onAnsweredIncorrect={this.onAnsweredIncorrect} 
+                        questionsRemaining={numberOfDeckQuestions - answeredQuestion}/>
                 </View>
             )
         }

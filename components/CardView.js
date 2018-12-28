@@ -24,9 +24,12 @@ export default class CardView extends React.Component {
                 <SubmitBtn 
                     onPress={this.OnChangeSize} 
                     textButton={'Change Side'}/>
+                <Text>Questions Remaining: {this.props.questionsRemaining}</Text>  
+                <Text>Press Mark Correct if you have answered correct</Text>  
                 <SubmitBtn 
                     onPress={this.props.onAnsweredCorrect} 
                     textButton={'Mark Correct'}/>   
+                <Text>Press Mark Incorrect if you have answered incorrect</Text>  
                 <SubmitBtn 
                     onPress={this.props.onAnsweredIncorrect} 
                     textButton={'Mark Incorrect'}/>                 
@@ -36,6 +39,8 @@ export default class CardView extends React.Component {
 }
 
 CardView.propTypes = {
+    cardData: PropTypes.object.isRequired,
     onAnsweredCorrect: PropTypes.func.isRequired,
-    onAnsweredIncorrect: PropTypes.func.isRequired
+    onAnsweredIncorrect: PropTypes.func.isRequired,
+    questionsRemaining : PropTypes.number.isRequired
   };
