@@ -21,7 +21,7 @@ class IndividualDeckView extends React.Component {
         </View>
         :
         <View style={styles.container}>
-          <Text style={styles.titleText}> `Oppsss...Deck ${deckKeyStr} does not exist` </Text>
+          <Text style={styles.titleText}> `Oppsss...Deck ${deckKeyStr} does not exist.` </Text>
         </View>
     );
   }

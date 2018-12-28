@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Text, TextInput, StyleSheet, TouchableOpacity, Platform} from 'react-native'
 import {SubmitBtn} from './CommonComponent'
-import { purple, white } from '../utils/colors'
+import PropTypes from 'prop-types';
 
 export default class CardView extends React.Component {
     state = {
@@ -24,7 +24,18 @@ export default class CardView extends React.Component {
                 <SubmitBtn 
                     onPress={this.OnChangeSize} 
                     textButton={'Change Side'}/>
+                <SubmitBtn 
+                    onPress={this.props.onAnsweredCorrect} 
+                    textButton={'Mark Correct'}/>   
+                <SubmitBtn 
+                    onPress={this.props.onAnsweredIncorrect} 
+                    textButton={'Mark Incorrect'}/>                 
             </View>
         )
     }
 }
+
+CardView.propTypes = {
+    onAnsweredCorrect: PropTypes.func.isRequired,
+    onAnsweredIncorrect: PropTypes.func.isRequired
+  };
