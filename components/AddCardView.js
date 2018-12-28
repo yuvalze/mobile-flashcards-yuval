@@ -1,19 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
+import { SubmitBtn } from './CommonComponent'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform } from 'react-native'
-import { purple, white } from '../utils/colors'
 import {addCardToDeckStorage} from '../utils/api'
 
-function SubmitBtn ({ onPress }) {
-    return (
-      <TouchableOpacity
-        style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
-        onPress={onPress}>
-          <Text style={styles.submitBtnText}>SUBMIT</Text>
-      </TouchableOpacity>
-    )
-  }
 
 class AddCardView extends React.Component {
     state = {
@@ -47,7 +38,6 @@ class AddCardView extends React.Component {
         
         // Navigare to the deck wigdet.
         navigate('IndividualDeck', {deckKeyStr})
-
     }
     
     render() {
@@ -67,37 +57,12 @@ class AddCardView extends React.Component {
                     onChangeText={(answerText) => this.setState({answerText})}
                     value={this.state.answerText}
                 />
-                <SubmitBtn onPress={this.onSubmit} />
+                <SubmitBtn 
+                    onPress={this.onSubmit} 
+                    textButton={'Add Card'}/>
           </View>
         )
     }
 }
 
-const styles = StyleSheet.create({
-    iosSubmitBtn: {
-      backgroundColor: purple,
-      padding: 10,
-      borderRadius: 7,
-      height: 45,
-      marginLeft: 40,
-      marginRight: 40,
-    },
-    AndroidSubmitBtn: {
-      backgroundColor: purple,
-      padding: 10,
-      paddingLeft: 30,
-      paddingRight: 30,
-      height: 45,
-      borderRadius: 2,
-      alignSelf: 'flex-end',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    submitBtnText: {
-      color: white,
-      fontSize: 22,
-      textAlign: 'center',
-    },
-  })
-
-  export default connect()(AddCardView)
+export default connect()(AddCardView)

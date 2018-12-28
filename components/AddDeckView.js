@@ -54,8 +54,8 @@ class AddDeckView extends React.Component {
                     value={this.state.deckName}
                 />
                 <SubmitBtn 
-                onPress={this.onAddNewDeck} 
-                textButton={'Create Deck'}/>
+                    onPress={this.onAddNewDeck} 
+                    textButton={'Create Deck'}/>
             </View>
         )
     }
