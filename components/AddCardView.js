@@ -1,5 +1,7 @@
 import React from 'react'
-import {View, Text, TextInput, StyleSheet, TouchableOpacity, Platform} from 'react-native'
+import { connect } from 'react-redux'
+import { addCard } from '../actions'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform } from 'react-native'
 import { purple, white } from '../utils/colors'
 import {addCardToDeckStorage} from '../utils/api'
 
@@ -13,30 +15,38 @@ function SubmitBtn ({ onPress }) {
     )
   }
 
-export default class AddCardView extends React.Component {
+class AddCardView extends React.Component {
     state = {
         questionText: '',
         answerText: ''
     }
 
     onSubmit = () => {
-        const {deckKeyStr, deckValueObj}  = this.props.navigation.state.params;
+        const {deckKeyStr}  = this.props.navigation.state.params;
         const {questionText, answerText} = this.state;
+        const {navigate} = this.props.navigation;
   
+        const newCardValueObj = {
+            question: questionText,
+            answer: answerText
+          };
+          
         // Save the new deck on AsyncStorage.
         addCardToDeckStorage( deckKeyStr, {
-            questions: [{
-              question: questionText,
-              answer: answerText
-            }]
+            questions: [newCardValueObj]
         } );
 
         // Sשve the new card on Redux Store.
-    
+        this.props.dispatch(addCard(deckKeyStr, newCardValueObj));
+
         // Clear the input text.
+        this.setState({
+            question : '',
+            answer : ''
+        })
         
-        // Navigare to the new deck.
-        //navigate('IndividualDeck', {deckItem : deckEmpty})
+        // Navigare to the deck wigdet.
+        navigate('IndividualDeck', {deckKeyStr})
 
     }
     
@@ -89,3 +99,5 @@ const styles = StyleSheet.create({
       textAlign: 'center',
     },
   })
+
+  export default connect()(AddCardView)
