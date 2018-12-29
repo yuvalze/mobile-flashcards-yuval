@@ -27,13 +27,17 @@ class DeckListView extends Component {
           {decksKeyValueArr.map ( (deckKeyValueItem, index) => {
             const deckKeyStr = deckKeyValueItem[0];
             const deckValueObj =  deckKeyValueItem[1];
-            return <TouchableOpacity
-              key = {index}
-              onPress = {() => this.props.navigation.navigate('IndividualDeck', {deckKeyStr, deckValueObj})}>
-              <Text style = {styles.titleText}> {deckValueObj.title} </Text>
-              <Text style = {styles.dataText}> {deckValueObj.questions.length}  Cards </Text>
-              <View style = {styles.lineStyleYellow} />
-            </TouchableOpacity>
+            return(
+            <View> 
+              <TouchableOpacity style={styles.center}
+                key = {index}
+                onPress = {() => this.props.navigation.navigate('IndividualDeck', {deckKeyStr, deckValueObj})}>
+                <Text style = {styles.deckText}> {deckValueObj.title} </Text>
+                <Text style = {styles.dataText}> {deckValueObj.questions.length}  Cards </Text>
+              </TouchableOpacity> 
+              <View style = {styles.lineStyleGray} />
+            </View>
+            )
           })}
         </ScrollView>
       </View>
@@ -50,12 +54,25 @@ const styles = StyleSheet.create({
     borderBottomColor: 'yellow',
     borderBottomWidth: 10,
   },
+  lineStyleGray:{
+    borderBottomColor: 'gray',
+    borderBottomWidth: 8,
+  },
   titleText: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    backgroundColor: '#DDDDDD',
+  },
+    deckText: {
     fontSize: 25,
     fontWeight: 'bold',
   },
   dataText: {
     fontSize: 20
+  },
+  center: {
+    flex: 1,
+    alignItems: 'center',
   },
 })
 
@@ -66,5 +83,4 @@ function mapStateToProps (state) {
 }
 
 export default connect(mapStateToProps)(DeckListView)
-
 
