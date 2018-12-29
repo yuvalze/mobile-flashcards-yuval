@@ -19,10 +19,6 @@ const styles = StyleSheet.create({
   },
 })
 
-export function getCardObj() {
-  
-}
-
 export function getDecksMetaInfo (decks) {
   const info = {
     React: {
