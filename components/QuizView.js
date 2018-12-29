@@ -27,6 +27,19 @@ export default class QuizView extends React.Component {
           });
     }
 
+    onResetQuiz = () => {
+        this.setState ({
+            answeredQuestion: 0,
+            answeredCorrect: 0
+        })
+    }
+
+    onBackToDeck = () => {
+        // Navigare to the deck view.
+        const { deckKeyStr }  = this.props.navigation.state.params;
+        this.props.navigation.navigate('IndividualDeck', {deckKeyStr})
+    }
+
     render() {
         const noCardMessageStr = 'Sorry, you cannot take a quiz because there are no card in the deck';
         const { deckValueObj }  = this.props.navigation.state.params;
@@ -43,7 +56,9 @@ export default class QuizView extends React.Component {
             return (
                 <QuizScoreView
                     answeredQuestion={answeredQuestion}
-                    answeredCorrect={answeredCorrect}/>
+                    answeredCorrect={answeredCorrect}
+                    onResetQuiz={this.onResetQuiz}
+                    onBackToDeck={this.onBackToDeck}/>
             )
         }
         else {

@@ -36,7 +36,7 @@ class AddCardView extends React.Component {
             answer : ''
         })
         
-        // Navigare to the deck wigdet.
+        // Navigare to the deck view.
         navigate('IndividualDeck', {deckKeyStr})
     }
     

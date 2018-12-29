@@ -17,11 +17,11 @@ class IndividualDeckView extends React.Component {
             onPress={() => this.props.navigation.navigate('AddCard', { deckKeyStr })}/>
           <Button color={orange}
             title="Start Quiz"
-            onPress={() => this.props.navigation.navigate('Quiz', { deckValueObj })}/>
+            onPress={() => this.props.navigation.navigate('Quiz', { deckKeyStr, deckValueObj })}/>
         </View>
         :
         <View style={styles.container}>
-          <Text style={styles.titleText}> `Oppsss...Deck ${deckKeyStr} does not exist.` </Text>
+          <Text style={styles.titleText}> Oops...Deck {deckKeyStr} does not exist. </Text>
         </View>
     );
   }
