@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, ScrollView  } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { fetchDeckResults } from '../utils/api';
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 
 class DeckListView extends Component {
-
   state = {
     decksObj: {}
   }

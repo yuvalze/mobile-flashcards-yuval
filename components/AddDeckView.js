@@ -1,9 +1,9 @@
 import React from 'react'
-import {View, Text, TextInput} from 'react-native'
+import { View, Text, TextInput } from 'react-native'
 import { connect } from 'react-redux'
-import {TouchableOpacityBtn} from './CommonComponent'
-import {addDeckToStorage} from '../utils/api'
-import {addDeck} from '../actions'
+import { TouchableOpacityBtn } from './CommonComponent'
+import { addDeckToStorage } from '../utils/api'
+import { addDeck } from '../actions'
 
 
 const getEmtpyDeck = (key) => {

@@ -1,8 +1,8 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import { View, Text } from 'react-native'
 import CardView from './CardView'
 import QuizScoreView from './QuizScoreView'
-import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 
 export default class QuizView extends React.Component {

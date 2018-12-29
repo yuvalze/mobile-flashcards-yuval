@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, TextInput, StyleSheet, TouchableOpacity, Platform} from 'react-native'
+import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { purple, white } from '../utils/colors'
 
 export function TouchableOpacityBtn ({ onPress, textButton }) {
@@ -15,11 +15,11 @@ export function TouchableOpacityBtn ({ onPress, textButton }) {
 
   const styles = StyleSheet.create({
     button: {
-      padding: 10,
+      padding: 8,
       backgroundColor: purple,
       alignSelf: 'center',
-      borderRadius: 5,
-      margin: 20,
+      borderRadius: 4,
+      margin: 16,
     },
     submitBtnText: {
       color: white,

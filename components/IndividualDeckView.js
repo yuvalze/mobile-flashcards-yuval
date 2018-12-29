@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Button, View, Text } from 'react-native';
 import { connect } from 'react-redux'
-import {purple, orange} from '../utils/colors'
+import { purple, orange } from '../utils/colors'
 
 class IndividualDeckView extends React.Component {
   render() {
@@ -11,12 +11,14 @@ class IndividualDeckView extends React.Component {
         <View style={styles.container}>
           <Text style={styles.titleText}> {deckValueObj.title} </Text>
           <Text style={styles.dataText}> {deckValueObj.questions.length} Cards </Text>
-          <Button color={purple}
-            title="Add Card"
-            onPress={() => this.props.navigation.navigate('AddCard', { deckKeyStr })}/>
-          <Button color={orange}
-            title="Start Quiz"
-            onPress={() => this.props.navigation.navigate('Quiz', { deckKeyStr, deckValueObj })}/>
+          <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-around',width: 300, height: 300}}>
+            <Button color={purple}
+              title="Add Card"
+              onPress={() => this.props.navigation.navigate('AddCard', { deckKeyStr })}/>
+            <Button color={orange}
+              title="Start Quiz"
+              onPress={() => this.props.navigation.navigate('Quiz', { deckKeyStr, deckValueObj })}/>
+          </View>
         </View>
         :
         <View style={styles.container}>
@@ -33,11 +35,11 @@ const styles = StyleSheet.create({
    justifyContent: 'center'
   },
   titleText: {
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: 'bold',
   },
   dataText: {
-    fontSize: 20
+    fontSize: 25
   },
 })
 

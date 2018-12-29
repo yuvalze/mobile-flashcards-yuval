@@ -1,6 +1,6 @@
 import React from 'react'
-import {View, Text, TextInput, StyleSheet, TouchableOpacity, Platform, ScrollView} from 'react-native'
-import {TouchableOpacityBtn} from './CommonComponent'
+import { View, Text, StyleSheet, ScrollView} from 'react-native'
+import { TouchableOpacityBtn } from './CommonComponent'
 import PropTypes from 'prop-types';
 
 export default class CardView extends React.Component {
@@ -17,6 +17,7 @@ export default class CardView extends React.Component {
     }
     render() {
         const questionOrAnswerText = this.state.cardSide === 'question' ?  'The Question is' : 'The Answer is';
+        const filpTheCardText = this.state.cardSide === 'question' ?  'Show Answer' : 'Show Question';
         return (
             <View>
                 <ScrollView>
@@ -24,7 +25,7 @@ export default class CardView extends React.Component {
                     <Text style={styles.insideText}> {this.props.cardData[this.state.cardSide]} </Text>
                     <TouchableOpacityBtn 
                         onPress={this.OnChangeSize} 
-                        textButton={'Change Side'}/>
+                        textButton={filpTheCardText}/>
                     <TouchableOpacityBtn 
                         onPress={this.props.onAnsweredCorrect} 
                         textButton={'Mark Correct'}/>    

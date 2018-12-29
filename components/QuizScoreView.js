@@ -1,7 +1,7 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
-import PropTypes from 'prop-types';
-import {TouchableOpacityBtn} from './CommonComponent'
+import PropTypes from 'prop-types'
+import { View, Text, StyleSheet } from 'react-native'
+import { TouchableOpacityBtn } from './CommonComponent'
 
 const QuizScoreView = (props) => {
     const {answeredQuestion, answeredCorrect, onResetQuiz, onBackToDeck} = props;
