@@ -1,7 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { View, Text, StyleSheet, ScrollView} from 'react-native'
 import { TouchableOpacityBtn } from './CommonComponent'
-import PropTypes from 'prop-types';
 
 export default class CardView extends React.Component {
     state = {
@@ -21,6 +21,7 @@ export default class CardView extends React.Component {
         return (
             <View>
                 <ScrollView>
+                    <Text style={styles.title}>Card in {this.props.deckTitle} Deck</Text>
                     <Text style={styles.questionOrAnswerText}> {questionOrAnswerText} </Text>
                     <Text style={styles.insideText}> {this.props.cardData[this.state.cardSide]} </Text>
                     <TouchableOpacityBtn 
@@ -40,6 +41,7 @@ export default class CardView extends React.Component {
 }
 
 CardView.propTypes = {
+    deckTitle: PropTypes.string.isRequired,
     cardData: PropTypes.object.isRequired,
     onAnsweredCorrect: PropTypes.func.isRequired,
     onAnsweredIncorrect: PropTypes.func.isRequired,
@@ -47,6 +49,11 @@ CardView.propTypes = {
   };
 
   const styles = StyleSheet.create({
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        backgroundColor: 'orange',
+      },
     questionOrAnswerText: {
         fontSize: 25,
         fontWeight: 'bold',

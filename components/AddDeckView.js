@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { TouchableOpacityBtn } from './CommonComponent'
 import { addDeckToStorage } from '../utils/api'
@@ -8,7 +8,7 @@ import { addDeck } from '../actions'
 
 const getEmtpyDeck = (key) => {
     return ({
-            title: [key],
+            title: key,
             questions: [
             ]
         })
@@ -47,7 +47,7 @@ class AddDeckView extends React.Component {
     render() {
         return (
             <View>
-                <Text> What is the title of your new deck?</Text>
+                <Text style={styles.insideText}> What is the title of your new deck?</Text>
                 <TextInput
                     style={{height: 40}}
                     placeholder="Type here the new deck name"
@@ -61,5 +61,11 @@ class AddDeckView extends React.Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+      insideText: {
+        fontSize: 30,
+      },
+  })
 
 export default connect()(AddDeckView)

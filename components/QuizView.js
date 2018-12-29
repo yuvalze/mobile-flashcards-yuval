@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import CardView from './CardView'
 import QuizScoreView from './QuizScoreView'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
@@ -42,14 +42,14 @@ export default class QuizView extends React.Component {
     }
 
     render() {
-        const noCardMessageStr = 'Sorry, you cannot take a quiz because there are no card in the deck';
+        const noCardMessageStr = 'Sorry, you cannot take a quiz because there are no card in the deck.';
         const { deckValueObj }  = this.props.navigation.state.params;
         const { answeredQuestion, answeredCorrect} = this.state;
         const numberOfDeckQuestions = deckValueObj.questions.length;
         if (numberOfDeckQuestions === 0) {
             return (
                 <View>
-                    <Text> {noCardMessageStr}</Text>
+                    <Text style={styles.insideText}> {noCardMessageStr} </Text>
                 </View>
             )
         }
@@ -71,6 +71,7 @@ export default class QuizView extends React.Component {
             return (
                 <View>
                     <CardView 
+                        deckTitle={deckValueObj.title}
                         cardData={deckValueObj.questions[this.state.answeredQuestion]}
                         onAnsweredCorrect={this.onAnsweredCorrect}
                         onAnsweredIncorrect={this.onAnsweredIncorrect} 
@@ -80,3 +81,9 @@ export default class QuizView extends React.Component {
         }
     }
 }
+
+const styles = StyleSheet.create({
+    insideText: {
+        fontSize: 20,
+      },
+  })
