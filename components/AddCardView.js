@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
-import { SubmitBtn } from './CommonComponent'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform } from 'react-native'
-import {addCardToDeckStorage} from '../utils/api'
+import { TouchableOpacityBtn } from './CommonComponent'
+import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { addCardToDeckStorage } from '../utils/api'
 
 
 class AddCardView extends React.Component {
@@ -16,18 +16,22 @@ class AddCardView extends React.Component {
         const {deckKeyStr}  = this.props.navigation.state.params;
         const {questionText, answerText} = this.state;
         const {navigate} = this.props.navigation;
-  
         const newCardValueObj = {
             question: questionText,
             answer: answerText
-          };
+        };
+
+        // If the input question or the input answer are empty, do not add the card.
+        if(questionText.trim() === '' || answerText === '' ) {
+            return;
+        }
           
         // Save the new deck on AsyncStorage.
         addCardToDeckStorage( deckKeyStr, {
             questions: [newCardValueObj]
         } );
 
-        // Sשve the new card on Redux Store.
+        // Save the new card on Redux Store.
         this.props.dispatch(addCard(deckKeyStr, newCardValueObj));
 
         // Clear the input text.
@@ -57,7 +61,7 @@ class AddCardView extends React.Component {
                     onChangeText={(answerText) => this.setState({answerText})}
                     value={this.state.answerText}
                 />
-                <SubmitBtn 
+                <TouchableOpacityBtn 
                     onPress={this.onSubmit} 
                     textButton={'Add Card'}/>
           </View>

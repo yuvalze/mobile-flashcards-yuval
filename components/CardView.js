@@ -1,6 +1,6 @@
 import React from 'react'
 import {View, Text, TextInput, StyleSheet, TouchableOpacity, Platform} from 'react-native'
-import {SubmitBtn} from './CommonComponent'
+import {TouchableOpacityBtn} from './CommonComponent'
 import PropTypes from 'prop-types';
 
 export default class CardView extends React.Component {
@@ -21,16 +21,16 @@ export default class CardView extends React.Component {
             <View>
                 <Text> {titleText} </Text>
                 <Text> {this.props.cardData[this.state.cardSide]} </Text>
-                <SubmitBtn 
+                <TouchableOpacityBtn 
                     onPress={this.OnChangeSize} 
                     textButton={'Change Side'}/>
                 <Text>Questions Remaining: {this.props.questionsRemaining}</Text>  
                 <Text>Press Mark Correct if you have answered correct</Text>  
-                <SubmitBtn 
+                <TouchableOpacityBtn 
                     onPress={this.props.onAnsweredCorrect} 
                     textButton={'Mark Correct'}/>   
                 <Text>Press Mark Incorrect if you have answered incorrect</Text>  
-                <SubmitBtn 
+                <TouchableOpacityBtn 
                     onPress={this.props.onAnsweredIncorrect} 
                     textButton={'Mark Incorrect'}/>                 
             </View>

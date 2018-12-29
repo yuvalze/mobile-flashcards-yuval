@@ -2,9 +2,10 @@ import React from 'react'
 import {View, Text} from 'react-native'
 import CardView from './CardView'
 import QuizScoreView from './QuizScoreView'
+import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
+
 
 export default class QuizView extends React.Component {
-
     state = {
         answeredQuestion : 0,
         answeredCorrect : 0
@@ -53,6 +54,11 @@ export default class QuizView extends React.Component {
             )
         }
         else if (numberOfDeckQuestions === answeredQuestion) {
+            
+            // User complete quiz. Clear notification for this day and set notification for tommorow.
+            clearLocalNotification().then(setLocalNotification);
+
+            // Show the quiz result.
             return (
                 <QuizScoreView
                     answeredQuestion={answeredQuestion}

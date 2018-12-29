@@ -2,11 +2,12 @@ import React from 'react'
 import {View, Text, TextInput, StyleSheet, TouchableOpacity, Platform} from 'react-native'
 import { purple, white } from '../utils/colors'
 
-export function SubmitBtn ({ onPress, textButton }) {
+export function TouchableOpacityBtn ({ onPress, textButton, isDisabled }) {
     return (
       <TouchableOpacity
         style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
-        onPress={onPress}>
+        onPress={onPress}
+        disabled={ isDisabled }>
           <Text style={styles.submitBtnText}>{textButton}</Text>
       </TouchableOpacity>
     )

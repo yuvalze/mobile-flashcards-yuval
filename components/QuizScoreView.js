@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Text} from 'react-native'
 import PropTypes from 'prop-types';
-import {SubmitBtn} from './CommonComponent'
+import {TouchableOpacityBtn} from './CommonComponent'
 
 const QuizScoreView = (props) => {
     const {answeredQuestion, answeredCorrect, onResetQuiz, onBackToDeck} = props;
@@ -11,11 +11,11 @@ const QuizScoreView = (props) => {
             <Text> Quiz Result </Text>
             <Text> You answered {answeredCorrect} correct questions out of {answeredQuestion} </Text>
             <Text>Press here to reset the quiz.</Text>
-            <SubmitBtn 
+            <TouchableOpacityBtn 
                     onPress={ onResetQuiz } 
                     textButton={'Restart Quiz'}/>
             <Text>Press here to go back to the Individual Deck view.</Text>
-            <SubmitBtn 
+            <TouchableOpacityBtn 
                 onPress={ onBackToDeck } 
                 textButton={'Back to Deck'}/>                    
         </View>

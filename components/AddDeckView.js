@@ -1,10 +1,9 @@
 import React from 'react'
 import {View, Text, TextInput} from 'react-native'
 import { connect } from 'react-redux'
-import {SubmitBtn} from './CommonComponent'
+import {TouchableOpacityBtn} from './CommonComponent'
 import {addDeckToStorage} from '../utils/api'
 import {addDeck} from '../actions'
-import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
 
 
 const getEmtpyDeck = (key) => {
@@ -26,6 +25,11 @@ class AddDeckView extends React.Component {
         const deckValueObj = getEmtpyDeck(deckName);
         const newDeckObj = {[deckName]:deckValueObj};
 
+        // If Deck name is empty, do not create the Deck.
+        if (deckName.trim() === '') {
+            return;
+        }
+
         // Save the new deck on AsyncStorage.
         addDeckToStorage({ deckName, deckValueObj });
 
@@ -35,12 +39,9 @@ class AddDeckView extends React.Component {
         // Clear the input text.
         this.setState({deckName: ''});
 
-        // Navigare to the new deck.
+        // Navigate to the new deck.
         const deckKeyStr = deckName;
         navigate('IndividualDeck', {deckKeyStr})
-
-        clearLocalNotification()
-          .then(setLocalNotification)
     }
 
     render() {
@@ -53,7 +54,7 @@ class AddDeckView extends React.Component {
                     onChangeText={(deckName) => this.setState({deckName})}
                     value={this.state.deckName}
                 />
-                <SubmitBtn 
+                <TouchableOpacityBtn 
                     onPress={this.onAddNewDeck} 
                     textButton={'Create Deck'}/>
             </View>
