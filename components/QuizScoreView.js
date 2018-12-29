@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
 import PropTypes from 'prop-types';
 import {TouchableOpacityBtn} from './CommonComponent'
 
@@ -8,13 +8,11 @@ const QuizScoreView = (props) => {
 
     return (
         <View>
-            <Text> Quiz Result </Text>
-            <Text> You answered {answeredCorrect} correct questions out of {answeredQuestion} </Text>
-            <Text>Press here to reset the quiz.</Text>
+            <Text style={styles.titleText}> Quiz Result </Text>
+            <Text style={styles.insideText}> You answered {answeredCorrect} correct questions out of {answeredQuestion} </Text>
             <TouchableOpacityBtn 
                     onPress={ onResetQuiz } 
                     textButton={'Restart Quiz'}/>
-            <Text>Press here to go back to the Individual Deck view.</Text>
             <TouchableOpacityBtn 
                 onPress={ onBackToDeck } 
                 textButton={'Back to Deck'}/>                    
@@ -30,3 +28,14 @@ QuizScoreView.propTypes = {
     onResetQuiz: PropTypes.func.isRequired,
     onBackToDeck: PropTypes.func.isRequired
   };
+
+  const styles = StyleSheet.create({
+    titleText: {
+      fontSize: 25,
+      fontWeight: 'bold',
+      backgroundColor: '#DDDDDD',
+    },
+    insideText: {
+        fontSize: 20,
+      },
+  })

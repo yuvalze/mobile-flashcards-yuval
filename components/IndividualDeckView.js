@@ -5,7 +5,6 @@ import {purple, orange} from '../utils/colors'
 
 class IndividualDeckView extends React.Component {
   render() {
-    debugger;
     const {deckKeyStr, deckValueObj}  = this.props;
     return (
        deckValueObj ?

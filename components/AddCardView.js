@@ -27,9 +27,7 @@ class AddCardView extends React.Component {
         }
           
         // Save the new deck on AsyncStorage.
-        addCardToDeckStorage( deckKeyStr, {
-            questions: [newCardValueObj]
-        } );
+        addCardToDeckStorage( deckKeyStr, newCardValueObj);
 
         // Save the new card on Redux Store.
         this.props.dispatch(addCard(deckKeyStr, newCardValueObj));
@@ -47,16 +45,16 @@ class AddCardView extends React.Component {
     render() {
         return (
             <View>
-                <Text> The New Question</Text>
+                <Text style={styles.titleText}> The New Question</Text>
                 <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    style={{height: 60, borderColor: 'gray', borderWidth: 2}}
                     placeholder="Type here the question"
                     onChangeText={(questionText) => this.setState({questionText})}
                     value={this.state.questionText}
                 />
-                <Text> The New Answer</Text>
+                <Text style={styles.titleText}> The New Answer</Text>
                 <TextInput
-                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    style={{height: 60, borderColor: 'gray', borderWidth: 2}}
                     placeholder="Type here the answer"
                     onChangeText={(answerText) => this.setState({answerText})}
                     value={this.state.answerText}
@@ -68,5 +66,14 @@ class AddCardView extends React.Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    titleText: {
+      fontSize: 25,
+      fontWeight: 'bold',
+      backgroundColor: '#DDDDDD',
+    },
+  })
+
 
 export default connect()(AddCardView)
