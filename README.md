@@ -11,7 +11,6 @@ On the `package.json` directory type:
 `yarn start`
 
 ### Running the tests
-This application tested on Android
-Install Expo Client App from a device's Andoriod App Store
-Or
-Run Expo Client App on your computer in a device Emulator/Simulator
+This application was tested on Android OS.
+Install Expo Client App from a device's Andoriod App Store.
+

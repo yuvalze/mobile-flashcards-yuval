@@ -28,9 +28,8 @@ class DeckListView extends Component {
             const deckKeyStr = deckKeyValueItem[0];
             const deckValueObj =  deckKeyValueItem[1];
             return(
-            <View> 
+            <View key = {index}> 
               <TouchableOpacity style={styles.center}
-                key = {index}
                 onPress = {() => this.props.navigation.navigate('IndividualDeck', {deckKeyStr, deckValueObj})}>
                 <Text style = {styles.deckText}> {deckValueObj.title} </Text>
                 <Text style = {styles.dataText}> {deckValueObj.questions.length}  Cards </Text>
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: '#DDDDDD',
   },
-    deckText: {
+  deckText: {
     fontSize: 25,
     fontWeight: 'bold',
   },

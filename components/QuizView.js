@@ -54,7 +54,7 @@ export default class QuizView extends React.Component {
             )
         }
         else if (numberOfDeckQuestions === answeredQuestion) {
-            
+
             // User complete quiz. Clear notification for this day and set notification for tommorow.
             clearLocalNotification().then(setLocalNotification);
 
@@ -70,7 +70,6 @@ export default class QuizView extends React.Component {
         else {
             return (
                 <View>
-                    <Text> QuizView </Text>
                     <CardView 
                         cardData={deckValueObj.questions[this.state.answeredQuestion]}
                         onAnsweredCorrect={this.onAnsweredCorrect}

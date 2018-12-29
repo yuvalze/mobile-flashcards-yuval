@@ -16,22 +16,22 @@ export default class CardView extends React.Component {
         }
     }
     render() {
-        const titleText = this.state.cardSide === 'question' ?  'Question' : 'Answer';
+        const questionOrAnswerText = this.state.cardSide === 'question' ?  'The Question is' : 'The Answer is';
         return (
             <View>
                 <ScrollView>
-                    <Text> {titleText} </Text>
-                    <Text> {this.props.cardData[this.state.cardSide]} </Text>
+                    <Text style={styles.questionOrAnswerText}> {questionOrAnswerText} </Text>
+                    <Text style={styles.insideText}> {this.props.cardData[this.state.cardSide]} </Text>
                     <TouchableOpacityBtn 
                         onPress={this.OnChangeSize} 
                         textButton={'Change Side'}/>
-                    <Text>Questions Remaining: {this.props.questionsRemaining}</Text>  
                     <TouchableOpacityBtn 
                         onPress={this.props.onAnsweredCorrect} 
                         textButton={'Mark Correct'}/>    
                     <TouchableOpacityBtn 
                         onPress={this.props.onAnsweredIncorrect} 
                         textButton={'Mark Incorrect'}/>    
+                    <Text style={styles.insideText}>Questions Remaining: {this.props.questionsRemaining}</Text>                          
                 </ScrollView>             
             </View>
         )
@@ -44,3 +44,14 @@ CardView.propTypes = {
     onAnsweredIncorrect: PropTypes.func.isRequired,
     questionsRemaining : PropTypes.number.isRequired
   };
+
+  const styles = StyleSheet.create({
+    questionOrAnswerText: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        backgroundColor: '#DDDDDD',
+      },
+      insideText: {
+        fontSize: 20,
+      },
+  })
